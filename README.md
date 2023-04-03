@@ -1,38 +1,20 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a Next.js application set up to build embeddable widgets 
+(Web Components) for use in other applications. 
+It uses default Next.js Webpack configuration, but adds a custom Webpack plugin to generate the Web Components.
+The build process is integrated with Next.js builds, so you can run `npm run build` to build both Next.js app and Web Components. 
+`npm run dev` is also supported.
 
-## Getting Started
+![img.png](img.png)
 
-First, run the development server:
+I tested it with the Next.js version 13.2.4, but it should work with any version 12 or higher.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## How to use
+To see how it works, just clone the repo and run `npm install` and `npm run dev`. 
+Then open http://localhost:3000 in your browser.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## How it works
+The idea is taken from [LeMisterV comment in a GitHub thread](https://github.com/vercel/next.js/discussions/15989#discussioncomment-2639901). The plugin is located in `webpack-config/widget-compiler` module. 
+The main idea is to take the Webpack configuration specified in `webpack.config.js`
+and attach a separate compiler process to `beforeCompile` hook. This way, the components
+are rebuilt every time the Next.js app is rebuilt. Additionally, I use `WatchExternalFilesPlugin`
+to watch for changes in the widgets directory and rebuild the components when they change.

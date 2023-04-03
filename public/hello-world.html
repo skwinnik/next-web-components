@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Next.js + Web Components = ❤️</title>
+    <meta name="description" content="HTML edition" />
+    <link rel="stylesheet" href="/globals.css" />
+
+    <!-- THIS IS A WORKAROUND TO MAKE WIDGET WORK IN DEV MODE -->
+    <!-- NOT REQUIRED FOR PROD -->
+    <noscript id="__next_css__DO_NOT_USE__"></noscript>
+  </head>
+  <body>
+    <div>
+      <p class="paragraph">
+        This page is a plain HTML file. It uses a Web Component called
+        <code>hello-world</code> that is defined in the widgets folder.
+      </p>
+
+      <br />
+      <div class="flex">
+        <div class="col-left">
+          <hello-world>
+            <script src="/_next/static/widgets/hello-world/index.js"></script>
+          </hello-world>
+        </div>
+        <div class="col-right">
+          <pre class="code">
+&lt;html&gt;
+  &lt;head&gt;
+    ...
+  &lt;/head&gt;
+  &lt;body&gt;
+    ...
+    &lt;hello-world&gt;
+      &lt;script src="/_next/static/widgets/hello-world/index.js"&gt;&lt;/script&gt;
+    &lt;/hello-world&gt;
+    ...
+  &lt;/body&gt;
+&lt;/html&gt;
+          </pre>
+        </div>
+      </div>
+      <p class="paragraph">
+        As you can see, it behaves exactly the same as a Next.js page.
+        <a href="/"> You can go back and make sure. </a>
+      </p>
+    </div>
+  </body>
+</html>

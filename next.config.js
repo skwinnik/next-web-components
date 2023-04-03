@@ -1,8 +1,10 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
-}
+const { addWidgetCompiler } = require("./webpack-config/widget-compiler");
 
-module.exports = nextConfig
+module.exports = addWidgetCompiler(
+  /** @type {import('next').NextConfig} */
+  {
+    experimental: {
+      appDir: true,
+    },
+  }
+);
